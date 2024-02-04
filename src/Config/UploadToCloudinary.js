@@ -5,10 +5,10 @@ export const uploadToCloudinary = async (pics) => {
     
     const data = new FormData();
     data.append("file", pics);
-    data.append("upload_preset", "instagram");
-    data.append("cloud_name", "dnbw04gbs");
+    data.append("upload_preset", "ml_default");
+    data.append("cloud_name", "dphkkfcg0");
 
-    const res = await fetch("https://api.cloudinary.com/v1_1/dnbw04gbs/image/upload", {
+    const res = await fetch("https://api-eu.cloudinary.com/v1_1/dphkkfcg0/image/upload", {
       method: "post",
       body: data,
     })
