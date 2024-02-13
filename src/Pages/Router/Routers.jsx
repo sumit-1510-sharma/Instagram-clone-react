@@ -35,13 +35,13 @@ const Routers = () => {
 
 {(location.pathname !== "/login" && location.pathname!=="/signup")&& (
     <div className="flex">
-      <div className="sidebarBox border border-l-slate-500 w-[20%]">
+      {(location.pathname)!=="/" && <div className="sidebarBox border border-l-slate-500 w-[20%]">
         <Sidebar />
-      </div>
+      </div>}
       <div className="w-[80%]">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/p/:postId" element={<HomePage />} />
+          <Route path="/" element={<Auth />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/:username" element={<Profile />} />
           <Route path="/demo" element={<StoryPage />} />
           <Route path="/story/:userId" element={<Story />} />

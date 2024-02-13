@@ -24,7 +24,7 @@ const Sidebar = () => {
     if (tab === "Profile") {
       navigate(`/${user.reqUser?.username}`);
     } else if (tab === "Home") {
-      navigate("/");
+      navigate("/home");
     } else if (tab === "Create") {
       onOpen();
     }

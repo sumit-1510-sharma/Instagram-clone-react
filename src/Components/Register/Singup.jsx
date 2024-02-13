@@ -55,8 +55,8 @@ if(auth.signup?.username){
   },[auth.signup])
 
   return (
-    <div>
-        <div className="border border-slate-300 ">
+    <div className="pt-28">
+        <div className="border border-slate-300">
       <Box p={8} display="flex" flexDirection="column" alignItems="center">
         <img
           className="border border-red-800"
