@@ -1,6 +1,6 @@
 import { FETCH_FOLLOWING_USER_STORY, FETCH_USER_STORY } from "./ActionType";
 
-const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
+const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
 
 export const findFollowingUserStory = (data) => async (dispatch) => {
   const res = await fetch(

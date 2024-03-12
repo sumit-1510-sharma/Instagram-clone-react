@@ -7,7 +7,7 @@ import {
   UPDATE_USER,
 } from "./ActionType";
 
-const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
+const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
 
 export const getUserProfileAction = (token) => async (dispatch) => {
   try {

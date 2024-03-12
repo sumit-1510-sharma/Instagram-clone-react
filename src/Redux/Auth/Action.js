@@ -14,7 +14,7 @@ import { SIGN_IN, SIGN_UP } from "./ActionType";
 //   const data = await res.json();
 // };
 
-const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
+const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
 
 export const signinAction = (data) => async (dispatch) => {
   try {
