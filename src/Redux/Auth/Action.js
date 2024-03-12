@@ -16,7 +16,7 @@ import { SIGN_IN, SIGN_UP } from "./ActionType";
 
 export const signinAction = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/signin`, {
+    const res = await fetch(`http://localhost:5000/signin`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
