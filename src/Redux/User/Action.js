@@ -9,7 +9,7 @@ import {
 
 export const getUserProfileAction = (token) => async (dispatch) => {
   try {
-      const res = await fetch("https://absorbing-slave-production.up.railway.app/api/users/req", {
+      const res = await fetch("http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/req", {
     method: "GET",
 
     headers: {
@@ -34,7 +34,7 @@ export const findByUsernameAction = (data) => async (dispatch) => {
 try {
 
   const res = await fetch(
-    `https://absorbing-slave-production.up.railway.app/api/users/username/${data.username}`,
+    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/username/${data.username}`,
     {
       method: "GET",
 
@@ -61,7 +61,7 @@ try {
 export const findByUserIdsAction = (data) => async (dispatch) => {
   try {
 
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/users/m/${data.userIds}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/m/${data.userIds}`, {
       method: "GET",
 
       headers: {
@@ -88,7 +88,7 @@ export const followUserAction = (data) => async (dispatch) => {
  
   try {
 
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/users/follow/${data.userId}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/follow/${data.userId}`, {
       method: "PUT",
 
       headers: {
@@ -113,7 +113,7 @@ export const unFollowUserAction = (data) => async (dispatch) => {
  
   try {
 
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/users/unfollow/${data.userId}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/unfollow/${data.userId}`, {
       method: "PUT",
 
       headers: {
@@ -138,7 +138,7 @@ export const searchUserAction = (data) => async (dispatch) => {
  console.log("jwt --- ",data.jwt)
   try {
 
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/users/search?q=${data.query}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/search?q=${data.query}`, {
       method: "GET",
 
       headers: {
@@ -164,7 +164,7 @@ export const editUserDetailsAction = (data) => async (dispatch) => {
   console.log("data edit user --- ",data)
    try {
  
-     const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/users/account/edit`, {
+     const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/users/account/edit`, {
        method: "PUT",
  
        headers: {

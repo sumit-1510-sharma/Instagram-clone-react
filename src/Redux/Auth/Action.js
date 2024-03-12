@@ -16,7 +16,7 @@ import { SIGN_IN, SIGN_UP } from "./ActionType";
 
 export const signinAction = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/signin`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/signin`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const signinAction = (data) => async (dispatch) => {
 
 export const signupAction = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/signup`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

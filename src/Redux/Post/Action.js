@@ -15,7 +15,7 @@ export const createPost = (data) => async (dispatch) => {
   // console.log("data -- ",data.data)
 
   try {
-      const res = await fetch("https://absorbing-slave-production.up.railway.app/api/posts/create", {
+      const res = await fetch("http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/create", {
     method: "POST",
 
     headers: {
@@ -44,7 +44,7 @@ export const findUserPost = (data) => async (dispatch) => {
   try {
     
   const res = await fetch(
-    `https://absorbing-slave-production.up.railway.app/api/posts/following/${data.userIds}`,
+    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/following/${data.userIds}`,
     {
       method: "GET",
 
@@ -75,7 +75,7 @@ export const reqUserPostAction = (data) => async (dispatch) => {
   try {
     
   const res = await fetch(
-    `https://absorbing-slave-production.up.railway.app/api/posts/following/${data.userId}`,
+    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/following/${data.userId}`,
     {
       method: "GET",
 
@@ -106,7 +106,7 @@ export const likePostAction = (data) => async (dispatch) => {
   try {
     
   const res = await fetch(
-    `https://absorbing-slave-production.up.railway.app/api/posts/like/${data.postId}`,
+    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/like/${data.postId}`,
     {
       method: "PUT",
 
@@ -137,7 +137,7 @@ export const unLikePostAction = (data) => async (dispatch) => {
   try {
     
   const res = await fetch(
-    `https://absorbing-slave-production.up.railway.app/api/posts/unlike/${data.postId}`,
+    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/unlike/${data.postId}`,
     {
       method: "PUT",
 
@@ -166,7 +166,7 @@ export const unLikePostAction = (data) => async (dispatch) => {
 export const savePostAction = (data) => async (dispatch) => {
 
   try {
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/posts/save_post/${data.postId}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/save_post/${data.postId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -187,7 +187,7 @@ export const savePostAction = (data) => async (dispatch) => {
 export const unSavePostAction = (data) => async (dispatch) => {
 
   try {
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/posts/unsave_post/${data.postId}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/unsave_post/${data.postId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -207,7 +207,7 @@ export const unSavePostAction = (data) => async (dispatch) => {
 
 export const findPostByIdAction=(data)=>async(dispatch)=>{
   try {
-    const res=await fetch(`https://absorbing-slave-production.up.railway.app/api/posts/${data.postId}`,{
+    const res=await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/${data.postId}`,{
     method:"GET",
     headers:{
       "Content-Type":"application/json",
@@ -225,7 +225,7 @@ export const findPostByIdAction=(data)=>async(dispatch)=>{
 export const deletePostAction = (data) => async (dispatch) => {
 
   try {
-    const res = await fetch(`https://absorbing-slave-production.up.railway.app/api/posts/delete/${data.postId}`, {
+    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/posts/delete/${data.postId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
