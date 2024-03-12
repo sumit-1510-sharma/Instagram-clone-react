@@ -1,8 +1,10 @@
 import { FETCH_FOLLOWING_USER_STORY, FETCH_USER_STORY } from "./ActionType";
 
+const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
+
 export const findFollowingUserStory = (data) => async (dispatch) => {
   const res = await fetch(
-    `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/stories/f/${data.userIds}`,
+    `${BASE_API_URL}/api/stories/f/${data.userIds}`,
     {
       method: "GET",
       headers: {
@@ -19,7 +21,7 @@ export const findFollowingUserStory = (data) => async (dispatch) => {
 export const findStoryByUserId = (data) => async (dispatch) => {
   try {
     const res = await fetch(
-      `http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/stories/${data.userId}`,
+      `${BASE_API_URL}/api/stories/${data.userId}`,
       {
         method: "GET",
         headers: {

@@ -1,8 +1,9 @@
 import { CREATE_COMMENT, LIKE_COMMENT, UNLIKE_COMMENT } from "./ActionType";
+const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
 
 export const createComment = (data) => async (dispatch) => {
   console.log("data create comment",data.jwt)
-  const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/comments/create/${data.postId}`, {
+  const res = await fetch(`${BASE_API_URL}/api/comments/create/${data.postId}`, {
     method: "POST",
 
      headers: {
@@ -22,7 +23,7 @@ export const createComment = (data) => async (dispatch) => {
 
 
 export const findPostComment=(data)=>async(dispatch)=>{
-    const res= await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/comments/${data.postId}`,{
+    const res= await fetch(`BASE_API_URL/api/comments/${data.postId}`,{
         method:"GET",
        
      headers: {
@@ -36,7 +37,7 @@ export const findPostComment=(data)=>async(dispatch)=>{
 }
 
 export const likeComment=(data)=>async(dispatch)=>{
-    const res= await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/comments/like/${data.commentId}`,{
+    const res= await fetch(`BASE_API_URL/api/comments/like/${data.commentId}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -50,7 +51,7 @@ export const likeComment=(data)=>async(dispatch)=>{
 }
 
 export const unLikeComment=(data)=>async(dispatch)=>{
-  const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/api/comments/unlike/${data.commentId}`,{
+  const res = await fetch(`BASE_API_URL/api/comments/unlike/${data.commentId}`,{
       method:"PUT",
       headers:{
           "Content-Type":"application/json",

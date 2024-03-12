@@ -14,9 +14,11 @@ import { SIGN_IN, SIGN_UP } from "./ActionType";
 //   const data = await res.json();
 // };
 
+const BASE_API_URL = "http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com";
+
 export const signinAction = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`http://localhost:5000/signin`, {
+    const res = await fetch(`${BASE_API_URL}/signin`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ export const signinAction = (data) => async (dispatch) => {
 
 export const signupAction = (data) => async (dispatch) => {
   try {
-    const res = await fetch(`http://insta-back-api-env.eba-nxk2g8ry.ap-south-1.elasticbeanstalk.com/signup`, {
+    const res = await fetch(`${BASE_API_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
