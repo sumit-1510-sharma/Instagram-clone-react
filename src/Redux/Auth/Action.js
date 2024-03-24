@@ -15,6 +15,7 @@ import { SIGN_IN, SIGN_UP } from "./ActionType";
 // };
 
 const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
+// const BASE_API_URL = "http://localhost:5454";
 
 export const signinAction = (data) => async (dispatch) => {
   try {

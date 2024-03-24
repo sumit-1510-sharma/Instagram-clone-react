@@ -18,18 +18,20 @@ import { createPost } from "../../../Redux/Post/Action";
 import { uploadToCloudinary } from "../../../Config/UploadToCloudinary";
 import CommentModal from "../../Comment/CommentModal";
 
-
-
 const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
   const finalRef = React.useRef(null);
   const [file, setFile] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
-  
-  const dispatch=useDispatch();
-  const token=localStorage.getItem("token");
-  const {user}=useSelector(store=>store)
 
-  const [postData, setPostData] = useState({ image: '', caption: '',location:"" });
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const { user } = useSelector((store) => store);
+
+  const [postData, setPostData] = useState({
+    image: "",
+    caption: "",
+    location: "",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,7 +63,7 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
     setIsDragOver(false);
   }
 
-  const handleOnChange = async(e) => {
+  const handleOnChange = async (e) => {
     console.log(e.target.value);
 
     const file = e.target.files[0];
@@ -71,7 +73,7 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
     ) {
       setFile(file);
       const url = await uploadToCloudinary(file);
-      setPostData((prevValues)=>({...prevValues, image:url}));
+      setPostData((prevValues) => ({ ...prevValues, image: url }));
     } else {
       setFile(null);
       alert("Please select an image/video file.");
@@ -79,15 +81,15 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
   };
 
   const handleSubmit = async () => {
-    const data={
-      jwt:token,
-      data:postData,
-    }
-    if(token){
+    const data = {
+      jwt: token,
+      data: postData,
+    };
+    if (token) {
       dispatch(createPost(data));
       onClose();
     }
-    
+
     console.log("data --- ", data);
   };
 
@@ -122,7 +124,6 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
           <hr className="hrLine" />
 
           <ModalBody>
-         
             <div className="modalBodyBox flex h-[70vh] justify-between">
               <div className="w-[50%]">
                 {!file && (
@@ -156,7 +157,7 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
 
                 {file && (
                   <img
-                    className=""
+                    className="w-[95%]"
                     src={URL.createObjectURL(file)}
                     alt="dropped-img"
                   />
@@ -167,10 +168,15 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
                 <div className="flex items-center px-2">
                   <img
                     className="w-7 h-7 rounded-full"
-                    src={user?.reqUser?.image || "https://cdn.pixabay.com/photo/2023/02/28/03/42/ibex-7819817_640.jpg"}
+                    src={
+                      user?.reqUser?.image ||
+                      "https://cdn.pixabay.com/photo/2023/02/28/03/42/ibex-7819817_640.jpg"
+                    }
                     alt=""
                   />{" "}
-                  <p className="font-semibold ml-4">{user?.reqUser?.username}</p>
+                  <p className="font-semibold ml-4">
+                    {user?.reqUser?.username}
+                  </p>
                 </div>
                 <div className="px-2">
                   <textarea
@@ -178,7 +184,6 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
                     placeholder="Write a caption..."
                     name="caption"
                     rows="8"
-
                     onChange={handleInputChange}
                   />
                 </div>
@@ -200,11 +205,9 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
                 <hr />
               </div>
             </div>
-
           </ModalBody>
         </ModalContent>
       </Modal>
-      
     </div>
   );
 };

@@ -1,7 +1,13 @@
 import { useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BsBookmark, BsBookmarkFill, BsDot, BsEmojiSmile, BsThreeDots } from "react-icons/bs";
+import {
+  BsBookmark,
+  BsBookmarkFill,
+  BsDot,
+  BsEmojiSmile,
+  BsThreeDots,
+} from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,6 +47,8 @@ const PostCard = ({
   const [isPostLiked, setIsPostLiked] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [recentComment, setRecentComment] = useState();
+  // const [comment, setComment] = useState("");
 
   const handleCommnetInputChange = (e) => {
     setCommentContent(e.target.value);
@@ -67,6 +75,8 @@ const PostCard = ({
   const handleOnEnterPress = (e) => {
     if (e.key === "Enter") {
       handleAddComment();
+      setRecentComment(commentContent)
+      setCommentContent("");
     } else return;
   };
 
@@ -129,16 +139,17 @@ const PostCard = ({
   const isOwnPost = isReqUserPost(post, user.reqUser);
 
   const handleOpenCommentModal = () => {
-    navigate(`/p/${post.id}`);
+    // navigate(`/p/${post.id}`);
     onOpen();
   };
+
   return (
     <div>
       <div className="flex flex-col items-center w-full border rounded-md">
         <div className="flex justify-between items-center w-full py-4 px-5">
           <div className="flex items-center">
             <img
-              className="w-12 h-12 rounded-full"
+              className="w-12 h-12 rounded-full object-cover"
               src={userProfileImage}
               alt=""
             />
@@ -215,10 +226,11 @@ const PostCard = ({
             )}
           </div>
         </div>
-        <div className="w-full py-2 px-5">
+        <div className="w-full -mt-5 py-2 px-5">
           {numberOfLikes > 0 && (
-            <p className="text-sm">{numberOfLikes} likes </p>
+            <p className="text-sm mb-2">{numberOfLikes} likes </p>
           )}
+          {post?.caption}
           {/* <div className="flex mt-3">
           <div className="mr-3">
             <img
@@ -245,24 +257,24 @@ const PostCard = ({
               onClick={handleOpenCommentModal}
               className="opacity-50 text-sm py-2 -z-0 cursor-pointer"
             >
-              View all {post?.comments?.length} comments
+              View all comments
             </p>
           )}
-         
+          {<p className="text-sm">{recentComment}</p>}
         </div>
-        
+
         <div className="border border-t w-full">
           <div className="w-full flex items-center px-5">
-             <BsEmojiSmile className=""/>
-           <input
-            onKeyPress={handleOnEnterPress}
-            onChange={handleCommnetInputChange}
-            className="commentInput"
-            type="text"
-            placeholder="Add a comment..."
-          />
+            <BsEmojiSmile className="" />
+            <input
+              onKeyPress={handleOnEnterPress}
+              onChange={handleCommnetInputChange}
+              className="commentInput"
+              type="text"
+              placeholder="Add a comment..."
+              value={commentContent}
+            />
           </div>
-         
         </div>
       </div>
 
@@ -277,6 +289,7 @@ const PostCard = ({
         isOpen={isOpen}
         onClose={onClose}
         onOpen={onOpen}
+        numberOfLikes={numberOfLikes}
       />
     </div>
   );

@@ -1,6 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks";
 import React, { useEffect, useRef, useState } from "react";
 import { IoReorderThreeOutline } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 
 import { useNavigate } from "react-router";
 import { mainu } from "./SidebarConfig";
@@ -11,13 +12,13 @@ import CreatePostModal from "../Post/Create/CreatePostModal";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState(null);
   const excludedBoxRef = useRef(null);
   const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useSelector((store) => store);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isMorePressed, setIsMorePressed] = useState(false);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -36,12 +37,17 @@ const Sidebar = () => {
 
   function handleClick() {
     setShowDropdown(!showDropdown);
+    setIsMorePressed(!isMorePressed);
   }
 
-  const handleLogout=()=>{
+  const handleLogout = () => {
     localStorage.clear();
-    navigate("/login")
-  }
+    navigate("/login");
+  };
+
+  const handleMoreClick = () => {
+    setIsMorePressed(!isMorePressed);
+  };
 
   // useEffect(() => {
   //   window.addEventListener("click", handleClick);
@@ -50,18 +56,23 @@ const Sidebar = () => {
 
   return (
     <div className=" sticky top-0 h-[100vh] pb-10 flex">
-      <div className={`${activeTab === "Search" ? "px-3" : "px-10"} flex flex-col justify-between h-full`}>
+      <div
+        className={`${
+          activeTab === "Search" ? "px-3" : "px-10"
+        } flex flex-col justify-between h-full`}
+      >
         <div className="pt-10">
           {!isSearchBoxVisible && (
             <img
-            className="w-40"
-            src="https://i.imgur.com/zqpwkLQ.png"
-            alt=""
-          />
+              className="w-40"
+              src="https://i.imgur.com/zqpwkLQ.png"
+              alt=""
+            />
           )}
           <div className="mt-10">
-            {mainu.map((item) => (
+            {mainu.map((item, index) => (
               <div
+                key={index}
                 onClick={() => handleTabClick(item.title)}
                 className="flex items-center mb-5 cursor-pointer text-lg"
               >
@@ -78,25 +89,43 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div clasName="relative">
-          <div onClick={handleClick} className="flex items-center cursor-pointer ">
+        <div className="relative">
+          <div
+            onClick={handleClick}
+            className={
+              isMorePressed
+                ? "flex items-center cursor-pointer font-semibold"
+                : "flex items-center cursor-pointer"
+            }
+          >
             <IoReorderThreeOutline className="text-2xl" />
-            {!isSearchBoxVisible && <p className="ml-5">More</p>}
+            {!isSearchBoxVisible && (
+              <p onClick={handleMoreClick} className="ml-5">
+                More
+              </p>
+            )}
           </div>
-          <div className="absolute bottom-20 bg-[#D397F8] left-14 w-[70%]">
+          <div className="absolute bottom-8 bg-[#D397F8] left-14 w-[11vw] z-50">
             {showDropdown && (
-              <div className="shadow-md">
-                <p className=" w-full py-2 text-base px-4 border-t border-b  cursor-pointer">
+              <div className="shadow-md relative">
+                <p className=" w-full py-2 text-base px-4 border-t border-b cursor-default">
                   Switch Appearance
                 </p>
                 <p className=" w-full py-2 text-base px-4 border-t border-b cursor-pointer">
                   Saved
                 </p>
-                <p onClick={handleLogout} className=" w-full py-2 text-base px-4 border-t border-b cursor-pointer">
+                <p
+                  onClick={handleLogout}
+                  className=" w-full py-2 text-base px-4 border-t border-b cursor-pointer"
+                >
                   Log out
                 </p>
-              
-              
+                <IoClose
+                  onClick={handleClick}
+                  className="absolute right-1.5 top-2 text-sm cursor-pointer"
+                >
+                  x
+                </IoClose>
               </div>
             )}
           </div>
@@ -104,8 +133,7 @@ const Sidebar = () => {
       </div>
 
       {isSearchBoxVisible && (
-        <div >
-          
+        <div>
           <SearchComponent setIsSearchVisible={setIsSearchBoxVisible} />
         </div>
       )}

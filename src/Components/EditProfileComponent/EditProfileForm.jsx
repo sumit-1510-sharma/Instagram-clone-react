@@ -94,9 +94,9 @@ const EditProfileForm = () => {
   // console.log("initial value ---- ", initialValues);
 
   return (
-    <div className="border rounded-md p-10">
+    <div className="border rounded-md -ml-16 p-10 w-[62vw]">
       <div className="flex pb-7">
-        <div className="w-[15%]">
+        <div className="w-[15%] flex items-center">
           <img
             className="w-8 h-8 rounded-full"
             src={
@@ -120,7 +120,7 @@ const EditProfileForm = () => {
       </div>
       <form onSubmit={formik.handleSubmit}>
         <Stack spacing="6">
-          <FormControl className="flex " id="name">
+          <FormControl className="flex items-center" id="name">
             <FormLabel className="w-[15%]">Name</FormLabel>
             <div className="w-full">
               <Input
@@ -138,7 +138,7 @@ const EditProfileForm = () => {
               </FormHelperText>
             </div>
           </FormControl>
-          <FormControl className="flex " id="username">
+          <FormControl className="flex items-center" id="username">
             <FormLabel className="w-[15%]">Username</FormLabel>
             <div className="w-full">
               <Input
@@ -149,11 +149,11 @@ const EditProfileForm = () => {
               />
               <FormHelperText className="text-xs">
                 In most cases, you'll be able to change your username back to
-                ashok.zarmariya for another 14 days. Learn more
+                the previous one in another 14 days. Learn more
               </FormHelperText>
             </div>
           </FormControl>
-          <FormControl className="flex " id="website">
+          <FormControl className="flex items-center" id="website">
             <FormLabel className="w-[15%]">Website</FormLabel>
             <div className="w-full">
               <Input
@@ -169,7 +169,7 @@ const EditProfileForm = () => {
               </FormHelperText>
             </div>
           </FormControl>
-          <FormControl className="flex " id="bio">
+          <FormControl className="flex items-center" id="bio">
             <FormLabel className="w-[15%]">Bio</FormLabel>
             <div className="w-full">
               <Textarea
@@ -190,7 +190,7 @@ const EditProfileForm = () => {
             </p>
           </div>
 
-          <FormControl className="flex " id="email">
+          <FormControl className="flex items-center" id="email">
             <FormLabel className="w-[15%]">Email address</FormLabel>
             <div className="w-full">
               <Input
@@ -202,7 +202,7 @@ const EditProfileForm = () => {
             </div>
           </FormControl>
 
-          <FormControl className="flex " id="mobile">
+          <FormControl className="flex items-center" id="mobile">
             <FormLabel className="w-[15%]">Phone number</FormLabel>
             <div className="w-full">
               <Input
@@ -213,7 +213,7 @@ const EditProfileForm = () => {
               />
             </div>
           </FormControl>
-          <FormControl className="flex " id="gender">
+          <FormControl className="flex items-center" id="gender">
             <FormLabel className="w-[15%]">Gender</FormLabel>
             <div className="w-full">
               <Input

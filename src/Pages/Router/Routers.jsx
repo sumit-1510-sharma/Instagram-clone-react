@@ -10,6 +10,8 @@ import EditProfilePage from "../EditProfile/EditProfilePage";
 import HomePage from "../HomePage/HomePage";
 import Profile from "../Profile/Profile";
 import Story from "../Story/Story";
+import CommentModal from "../../Components/Comment/CommentModal";
+import CommentPage from "../Comment/CommentPage";
 
 const Routers = () => {
   const location =useLocation();
@@ -46,6 +48,7 @@ const Routers = () => {
           <Route path="/demo" element={<StoryPage />} />
           <Route path="/story/:userId" element={<Story />} />
           <Route path="/account/edit" element={<EditProfilePage />} />
+          {/* <Route path="/p/:postId" element={<CommentPage />} /> */}
         </Routes>
       </div>
     </div>

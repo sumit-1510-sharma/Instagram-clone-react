@@ -11,7 +11,6 @@ const CommentCard = ({ comment }) => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("token");
 
-
   const handleLikeComment = () => {
     dispatch(likeComment({ jwt, commentId: comment.id }));
     setIsCommentLike(true);
@@ -32,30 +31,28 @@ const CommentCard = ({ comment }) => {
     setIsCommentLike(isCommentLikedByUser(comment, user.reqUser?.id));
   }, [comment, user.reqUser]);
 
-
   return (
     <div>
       <div className="reqUser flex justify-between items-center py-5">
         <div className="flex items-center">
           <div className="">
             <img
-              className="w-9 h-9 rounded-full"
+              className="w-9 h-9 rounded-full object-cover"
               src={
+                comment.user.userImage ||
                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               }
               alt=""
             />
           </div>
           <div className="ml-3">
-            <p >
-              <span className="font-semibold"> Love Angle</span>
-               <span className="ml-2">{comment.content}</span>
+            <p>
+              <span className="font-semibold">{comment?.user.username}</span>
+              <span className="ml-2">{comment?.content}</span>
             </p>
             <div className="flex items-center space-x-3 text-xs opacity-60 pt-2">
-            <span>{timeDifference(comment?.createdAt)}</span>
-              {commentLikes > 0 && (
-                <span>{commentLikes} like</span>
-              )}
+              <span>{timeDifference(comment?.createdAt)}</span>
+              {commentLikes > 0 && <span>{commentLikes} like</span>}
             </div>
           </div>
         </div>

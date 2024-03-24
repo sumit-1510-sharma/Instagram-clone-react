@@ -20,7 +20,7 @@ function ChangeProfilePhotoModal({ isOpen, onOpen, onClose,handleProfileImageCha
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader textAlign={"center"}>Modal Title</ModalHeader>
+          <ModalHeader textAlign={"center"}>Upload a Portrait</ModalHeader>
 
           <ModalBody>
             <div className="flex flex-col items-center">
@@ -40,7 +40,7 @@ function ChangeProfilePhotoModal({ isOpen, onOpen, onClose,handleProfileImageCha
               Remove Photo
             </p>
             <hr />
-            <p className=" py-3 text-center" onClick={onClose}>
+            <p className=" py-3 text-center cursor-pointer" onClick={onClose}>
               Cancel
             </p>
           </ModalBody>

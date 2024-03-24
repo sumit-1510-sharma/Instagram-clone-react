@@ -11,7 +11,7 @@ const StoryCircle = ({ image, username, userId }) => {
   
   return (
     <div className="cursor-pointer flex flex-col items-center" onClick={handleNavigate}>
-      <img className="w-16 h-16 rounded-full" src={image} alt="" />
+      <img className="w-16 h-16 rounded-full object-cover" src={image} alt="" />
       <p>
         {username?.length > 9 ? username.substring(0, 9) + "..." : username}
       </p>

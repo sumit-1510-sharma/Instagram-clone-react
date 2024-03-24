@@ -6,19 +6,17 @@ import { followUserAction, unFollowUserAction } from "../../Redux/User/Action";
 // import { isReqUser } from '../../Config/Logic'
 
 const UserDetailCard = ({ user, isRequser, isFollowing }) => {
-
   const token = localStorage.getItem("token");
   const { post } = useSelector((store) => store);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isFollow,setIsFollow]=useState(false);
+  const [isFollow, setIsFollow] = useState(false);
 
   const goToAccountEdit = () => {
     navigate("/account/edit");
   };
 
   console.log("user --- ", user);
-  
 
   const data = {
     jwt: token,
@@ -28,31 +26,31 @@ const UserDetailCard = ({ user, isRequser, isFollowing }) => {
   const handleFollowUser = () => {
     dispatch(followUserAction(data));
     console.log("follow");
-    setIsFollow(true)
+    setIsFollow(true);
   };
 
   const handleUnFollowUser = () => {
     dispatch(unFollowUserAction(data));
+    setIsFollow(false);
   };
 
-  useEffect(()=>{
-setIsFollow(isFollowing)
-  },[isFollowing])
+  useEffect(() => {
+    setIsFollow(isFollowing);
+  }, [isFollowing]);
 
   return (
     <div className="py-10">
       <div className="flex items-center">
         <div className="w-[15%]">
-           <img
-          className="w-32 h-32 rounded-full"
-          src={
-            user?.image ||
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-          }
-          alt=""
-        />
+          <img
+            className="w-32 h-32 rounded-full object-cover"
+            src={
+              user?.image ||
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            }
+            alt=""
+          />
         </div>
-       
 
         <div className="ml-10 space-y-5 text-xs">
           <div className=" flex space-x-10 items-center">
@@ -94,7 +92,7 @@ setIsFollow(isFollowing)
             </div>
           </div>
           <div>
-            <p className="font-semibold">{user?.name}</p>
+            <p className="font-semibold">{user?.email}</p>
             <p className="font-thin text-sm">{user?.bio}</p>
           </div>
         </div>

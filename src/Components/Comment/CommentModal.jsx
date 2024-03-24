@@ -36,61 +36,67 @@ const CommentModal = ({
   handleUnSavePost,
   isPostLiked,
   isSaved,
+  numberOfLikes,
 }) => {
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("token");
-  const { post,comments } = useSelector((store) => store);
+  const jwt = localStorage.getItem("token"); /*yahan change*/
+  const { post, comments } = useSelector((store) => store);
   const [commentContent, setCommentContent] = useState("");
   const { postId } = useParams();
-  const navigate=useNavigate();
-// console.log("comments :",comments)
+  const navigate = useNavigate();
+  const [recentComment, setRecentComment] = useState("");
+  const [newCommentAdded, setNewCommentAdded] = useState(false);
+  // console.log("comments :",comments)
+
   useEffect(() => {
     dispatch(
       findPostByIdAction({
-        jwt,
-        postId,
+        jwt /*yahan change*/,
+        postId: postData.id,
       })
     );
-  }, [postId,comments?.createdComment]);
+  }, [postId, comments?.createdComment]);
 
   const handleAddComment = () => {
     const data = {
       jwt,
-      postId,
+      postId: postData.id,
       data: {
         content: commentContent,
       },
     };
     console.log("comment content ", commentContent);
     dispatch(createComment(data));
-    setCommentContent("")
   };
 
   const handleCommnetInputChange = (e) => {
     setCommentContent(e.target.value);
   };
+
   const handleOnEnterPress = (e) => {
     if (e.key === "Enter") {
       handleAddComment();
-      
+      setRecentComment(commentContent);
+      setNewCommentAdded(true);
+      setCommentContent("");
     } else return;
   };
 
-  const handleClose=()=>{
-    onClose()
-    navigate("/")
-  }
+  const handleClose = () => {
+    onClose();
+    console.log(postData);
+  };
   return (
     <div>
       <Modal size={"4xl"} onClose={handleClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
-            <div className="flex h-[75vh] ">
+            <div className="flex h-[77vh]">
               <div className="w-[45%] flex flex-col justify-center">
                 <img
                   className="max-h-full max-w-full"
-                  src={post.singlePost?.image}
+                  src={postData.image}
                   alt=""
                 />
               </div>
@@ -99,25 +105,30 @@ const CommentModal = ({
                   <div className="flex items-center">
                     <div className="">
                       <img
-                        className="w-9 h-9 rounded-full"
+                        className="w-9 h-9 rounded-full object-cover"
                         src={
+                          postData.user.userImage ||
                           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                         }
                         alt=""
                       />
                     </div>
                     <div className="ml-3">
-                      <p>{post?.singlePost?.user?.name}</p>
-                      <p>{post?.singlePost?.user?.username}</p>
+                      <p className="font-semibold text-sm">
+                        {postData.user.username}
+                      </p>
+                      <p className="text-xs">{postData.user.email}</p>
                     </div>
                   </div>
                   <BsThreeDots />
                 </div>
                 <hr />
 
-                <div className="comments ">
-                  {post?.singlePost?.comments?.length > 0 &&
-                    post?.singlePost?.comments.map((item) => <CommentCard comment={item} />)}
+                <div className="comments px-5 bg-[#befffb] -space-y-4">
+                  {postData.comments?.length > 0 &&
+                    postData.comments.map((item,index) => (
+                      <CommentCard comment={item} key={index} />
+                    ))}
                 </div>
 
                 <div className=" absolute bottom-0 w-[90%]">
@@ -152,22 +163,22 @@ const CommentModal = ({
                       )}
                     </div>
                   </div>
-                  {post.singlePost?.likedByUsers?.length > 0 && (
+                  {numberOfLikes > 0 && (
                     <p className="text-sm font-semibold py-2">
-                      {post.singlePost?.likedByUsers?.length} likes{" "}
+                      {numberOfLikes} likes{" "}
                     </p>
                   )}
-                  <p className="opacity-70 pb-5">
-                    {timeDifference(post?.singlePost?.createdAt)}
+                  <p className="opacity-70 pb-2">
+                    {timeDifference(postData.createdAt)}
                   </p>
                   <div className=" flex items-center ">
                     <BsEmojiSmile className="mr-3 text-xl" />
                     <input
-                      className="commentInput w-[70%]"
-                      placeholder="Add Comment..."
-                      type="text"
                       onKeyPress={handleOnEnterPress}
                       onChange={handleCommnetInputChange}
+                      className="commentInput"
+                      type="text"
+                      placeholder="Add a comment..."
                       value={commentContent}
                     />
                   </div>
