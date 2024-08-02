@@ -7,7 +7,7 @@ import {
   UPDATE_USER,
 } from "./ActionType";
 
-// const BASE_API_URL = "";
+
 // const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
 const BASE_API_URL = "https://responsible-enchantment-production.up.railway.app";
 
