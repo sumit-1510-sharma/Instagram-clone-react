@@ -2,7 +2,7 @@ import { CREATE_COMMENT, LIKE_COMMENT, UNLIKE_COMMENT } from "./ActionType";
 
 // const BASE_API_URL = "";
 // const BASE_API_URL = "http://instagram-backend-env.eba-juf5vnep.ap-south-1.elasticbeanstalk.com";
-const BASE_API_URL = "https://kind-connection-production.up.railway.app";
+const BASE_API_URL = "https://responsible-enchantment-production.up.railway.app";
 
 export const createComment = (data) => async (dispatch) => {
   console.log("create comment data", data);
